@@ -4,7 +4,7 @@ Aplicación móvil de práctica para organizar postulantes de una empresa. Permi
 
 **Repositorio:** https://github.com/jossuer1/registroTrabajadores
 
-**Responsable del repositorio:** [ Josue Patiño][Ariana Villota](https://github.com/jossuer1).
+**Responsable del repositorio:** Josue Patiño - Ariana Villota.
 
 ## Cómo funciona
 
