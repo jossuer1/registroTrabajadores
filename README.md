@@ -3,9 +3,8 @@
 Aplicación móvil de práctica para organizar postulantes de una empresa. Permite registrar perfiles profesionales, guardarlos en Cloud Firestore y consultar sus fichas completas. Desarrollada con Ionic, Angular Standalone y Firebase; empaquetada para Android con Capacitor.
 
 **Repositorio:** https://github.com/jossuer1/registroTrabajadores
-**Integrantes** Josue Patiño - Ariana Villota
 
-**Responsable del repositorio:** [jossuer1](https://github.com/jossuer1). Completar los nombres completos de los integrantes antes de la entrega académica.
+**Responsable del repositorio:** [ Josue Patiño][Ariana Villota](https://github.com/jossuer1).
 
 ## Cómo funciona
 
