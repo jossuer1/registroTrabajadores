@@ -1,0 +1,16 @@
+﻿:host { display: flex; flex-direction: column; height: 100%; }
+ion-content { --background: var(--tf-cream); }
+ion-header ion-toolbar { --background: var(--tf-ink); --color: white; --min-height: 66px; }
+ion-title { font-weight: 750; letter-spacing: -.5px; }
+.navegacion-inferior { --background: #fff; --padding-top: 10px; --padding-bottom: 10px; border-top: 1px solid #efdfd5; border-radius: 22px 22px 0 0; box-shadow: 0 -5px 24px #3430470a; }
+.barra-secciones { max-width: 420px; margin: auto; display: flex; justify-content: space-around; gap: 24px; padding: 0 24px; }
+.boton-seccion { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-width: 90px; min-height: 54px; border: 1px solid transparent; border-radius: 16px; background: #fcf7f3; color: #665868; cursor: pointer; transition: background .18s, border-color .18s; }
+.boton-seccion ion-icon { display: block; font-size: 26px; color: inherit; opacity: 1; }
+.boton-seccion.seleccionado { background: var(--tf-peach); border-color: var(--tf-coral); color: #8b3429; }
+.indicador { width: 5px; height: 5px; border-radius: 50%; background: transparent; }
+.seleccionado .indicador { background: var(--tf-coral); }
+.boton-seccion:focus-visible { outline: 3px solid var(--tf-ink); outline-offset: 3px; }
+.boton-seccion:disabled { opacity: .65; cursor: wait; }
+
+app-registro[hidden] { display: none; }
+

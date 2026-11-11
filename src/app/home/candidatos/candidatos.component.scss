@@ -1,0 +1,12 @@
+﻿ion-modal.modal-ficha { --width: min(540px, calc(100vw - 28px)); --height: min(700px, 85dvh); --border-radius: 24px; --box-shadow: 0 24px 80px #34304740; }
+.modal-ficha ion-toolbar { --background: var(--tf-peach); --color: var(--tf-ink); }
+.modal-ficha ion-title { font-size: 1rem; font-weight: 750; }
+.modal-ficha ion-buttons ion-button { margin: 0; }
+.modal-ficha ion-content { --background: white; }
+.ficha-modal { padding: 22px; color: var(--tf-ink); overflow-wrap: anywhere; }
+.identidad-modal { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.identidad-modal h2 { font-size: 1.3rem; margin: 0 0 6px; font-weight: 750; }
+.identidad-modal p { margin: 0; color: #6c6269; }
+.ficha-modal p { line-height: 1.6; }
+.ficha-modal p > ion-icon { vertical-align: middle; margin-right: 8px; color: #8b4c43; font-size: 18px; }
+.detalle-modal h3 { border-top: 1px solid #efdfd5; padding-top: 18px; }

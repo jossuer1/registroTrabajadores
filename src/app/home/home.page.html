@@ -1,0 +1,20 @@
+﻿<ion-header>
+  <ion-toolbar color="primary"><ion-title>TalentFlow</ion-title></ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <app-registro [hidden]="seccion !== 'registro'" (guardandoChange)="guardando = $event"></app-registro>
+  <app-candidatos *ngIf="seccion === 'candidatos'"></app-candidatos>
+</ion-content>
+
+
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="navegacion-inferior">
+    <nav class="barra-secciones" aria-label="Secciones de TalentFlow">
+      <button type="button" class="boton-seccion" [class.seleccionado]="seccion === 'registro'" [attr.aria-current]="seccion === 'registro' ? 'page' : null" [disabled]="guardando" (click)="cambiarSeccion('registro')" aria-label="Registro" title="Registro"><ion-icon name="book-outline" aria-hidden="true"></ion-icon><span class="indicador"></span></button>
+      <button type="button" class="boton-seccion" [class.seleccionado]="seccion === 'candidatos'" [attr.aria-current]="seccion === 'candidatos' ? 'page' : null" [disabled]="guardando" (click)="cambiarSeccion('candidatos')" aria-label="Candidatos" title="Candidatos"><ion-icon name="person-outline" aria-hidden="true"></ion-icon><span class="indicador"></span></button>
+    </nav>
+  </ion-toolbar>
+</ion-footer>
+
+

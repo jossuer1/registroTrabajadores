@@ -1,0 +1,56 @@
+﻿  <section class="consulta" aria-label="Candidatos registrados">
+    <div class="encabezado-consulta">
+      <h2>Candidatos registrados</h2>
+      <ion-button size="small" fill="outline" (click)="cargarCandidatos()" [disabled]="cargandoCandidatos"><ion-icon slot="start" name="refresh-outline" aria-hidden="true"></ion-icon>Actualizar</ion-button>
+    </div>
+    <p *ngIf="cargandoCandidatos" role="status"><ion-spinner name="dots" aria-hidden="true"></ion-spinner> Cargando candidatos...</p>
+    <p *ngIf="errorConsulta" class="error" role="alert">{{ errorConsulta }}</p>
+    <p *ngIf="!cargandoCandidatos && !errorConsulta && candidatos.length === 0">Todavía no hay candidatos. Registre una hoja de vida para ver su ficha aquí.</p>
+    <ion-list aria-label="Fichas de candidatos">
+      <ion-card *ngFor="let candidato of candidatos; trackBy: identificarCandidato">
+        <ion-card-header>
+          <ion-card-title class="nombre-candidato"><span class="avatar"><ion-icon name="person-outline" aria-hidden="true"></ion-icon></span>{{ candidato.nombres }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p><ion-icon name="briefcase-outline" aria-hidden="true"></ion-icon><strong>Cargo:</strong> {{ candidato.cargo }}</p>
+          <p><ion-icon name="laptop-outline" aria-hidden="true"></ion-icon><strong>Modalidad:</strong> {{ candidato.modalidad }}</p>
+          <p><ion-icon name="time-outline" aria-hidden="true"></ion-icon><strong>Experiencia:</strong> {{ candidato.experienciaAnios }} años</p>
+          <ion-button fill="outline" expand="block" (click)="abrirFicha(candidato)">Ver ficha completa</ion-button>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </section>
+
+<ion-modal class="modal-ficha" [isOpen]="candidatoSeleccionado !== null" (didDismiss)="cerrarFicha()" aria-label="Ficha completa del candidato">
+  <ng-template>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-title>Ficha del candidato</ion-title>
+        <ion-buttons slot="end"><ion-button (click)="cerrarFicha()" aria-label="Cerrar ficha">Cerrar</ion-button></ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <article *ngIf="candidatoSeleccionado as candidato" class="ficha-modal">
+        <div class="identidad-modal"><span class="avatar"><ion-icon name="person-outline" aria-hidden="true"></ion-icon></span><div><h2 class="nombre-candidato">{{ candidato.nombres }}</h2><p>{{ candidato.cargo }}</p></div></div>
+        <p><ion-icon name="laptop-outline" aria-hidden="true"></ion-icon><strong>Modalidad:</strong> {{ candidato.modalidad }}</p>
+        <p><ion-icon name="time-outline" aria-hidden="true"></ion-icon><strong>Experiencia:</strong> {{ candidato.experienciaAnios }} años</p>
+          <div class="detalle-modal">
+            <h3>Datos personales</h3>
+            <p><ion-icon name="mail-outline" aria-hidden="true"></ion-icon><strong>Correo:</strong> {{ candidato.correo }}</p>
+            <p><ion-icon name="call-outline" aria-hidden="true"></ion-icon><strong>Teléfono:</strong> {{ candidato.telefono }}</p>
+            <p><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><strong>Fecha de nacimiento:</strong> {{ candidato.fechaNacimiento }}</p>
+            <h3>Perfil profesional</h3>
+            <p><ion-icon name="school-outline" aria-hidden="true"></ion-icon><strong>Nivel académico:</strong> {{ candidato.nivelAcademico }}</p>
+            <p><ion-icon name="code-slash-outline" aria-hidden="true"></ion-icon><strong>Habilidades:</strong> {{ candidato.habilidades.join(', ') }}</p>
+            <h3>Disponibilidad y presentación</h3>
+            <p><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><strong>Disponible desde:</strong> {{ candidato.fechaDisponibilidad }}</p>
+            <p><ion-icon name="cash-outline" aria-hidden="true"></ion-icon><strong>Aspiración salarial:</strong> {{ candidato.aspiracionSalarial | currency:'USD':'symbol':'1.2-2' }}</p>
+            <p class="resumen"><ion-icon name="document-text-outline" aria-hidden="true"></ion-icon><strong>Resumen:</strong> {{ candidato.resumen }}</p>
+            <p><ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon><strong>Consentimiento:</strong> {{ candidato.consentimiento ? 'Aceptado' : 'No aceptado' }}</p>
+            <p><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><strong>Fecha de registro:</strong> {{ candidato.creadoEn ? (candidato.creadoEn.toDate() | date:'dd/MM/yyyy HH:mm') : 'No disponible' }}</p>
+          </div>      </article>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+

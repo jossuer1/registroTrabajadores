@@ -1,0 +1,39 @@
+﻿:host { display: block; }
+section, .consulta { max-width: 680px; margin: 0 auto; }
+.intro { padding: 24px 8px 8px; }
+.eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: 2px; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.2rem); font-weight: 750; letter-spacing: -1px; margin: 10px 0; }
+.intro p { color: #6c6269; line-height: 1.6; }
+ion-card { --background: #fff; color: var(--tf-ink); margin: 20px 0; border-radius: 22px; border: 1px solid #101e3810; box-shadow: 0 8px 28px #101e3808; }
+ion-card-header { padding: 20px; background: var(--tf-peach); }
+section > ion-card:nth-of-type(2) ion-card-header { background: var(--tf-rose); }
+section > ion-card:nth-of-type(3) ion-card-header { background: var(--tf-gold); }
+ion-card-title { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 750; color: var(--tf-ink); }
+ion-card-title > ion-icon { background: #ffffff99; padding: 10px; border-radius: 12px; font-size: 22px; }
+ion-card-content { padding: 20px; }
+ion-card-content > p, form > p { line-height: 1.6; }
+ion-item { --background: #fcf7f3; --border-color: #efdfd5; --padding-start: 12px; --inner-padding-end: 12px; border-radius: 12px; margin: 8px 0; --min-height: 52px; }
+ion-item > ion-icon { font-size: 20px; color: #8b4c43; margin-right: 12px; }
+ion-radio, ion-checkbox { width: 100%; font-size: .9rem; }
+ion-checkbox { --size: 20px; }
+ion-checkbox::part(label) { white-space: normal; }
+h3 { display: flex; align-items: center; gap: 8px; font-size: .95rem; font-weight: 700; margin: 22px 0 12px; }
+h3 ion-icon { font-size: 19px; }
+ion-button { --border-radius: 12px; --box-shadow: none; text-transform: none; font-weight: 650; margin-top: 18px; min-height: 44px; }
+.error { color: var(--ion-color-danger); margin: 8px 4px; font-size: .85rem; }
+.encabezado-consulta { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; }
+.encabezado-consulta h2 { font-size: 1.3rem; font-weight: 750; }
+.encabezado-consulta ion-button { margin-top: 0; }
+ion-list { background: transparent; padding: 0; }
+.consulta ion-card-header { background: var(--tf-rose); }
+.avatar { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; background: var(--tf-ink); color: white; border-radius: 14px; font-size: 23px; }
+.consulta ion-card-content p { margin: 10px 0; overflow-wrap: anywhere; }
+.consulta p > ion-icon { vertical-align: middle; margin-right: 8px; color: #8b4c43; font-size: 18px; }
+.detalle { border-top: 1px solid #efdfd5; margin-top: 18px; padding-top: 4px; }
+.resumen { white-space: pre-wrap; }
+ion-spinner { vertical-align: middle; margin-right: 8px; }
+@media (max-width: 380px) { ion-card-content { padding: 14px; } .encabezado-consulta h2 { font-size: 1.05rem; } }
+
+
+.nombre-candidato { text-transform: uppercase; }
+

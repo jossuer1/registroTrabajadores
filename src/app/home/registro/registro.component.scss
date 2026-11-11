@@ -1,0 +1,45 @@
+﻿/* Calendarios compactos inspirados en la referencia. */
+ion-datetime {
+  --background: #fff;
+  --background-rgb: 255,255,255;
+  --ion-color-primary: #ffb034;
+  --ion-color-primary-rgb: 255,176,52;
+  --ion-color-primary-contrast: #343047;
+  --ion-text-color: #343047;
+  width: 100%;
+  max-width: 100%;
+  margin: 16px auto 22px;
+  border-radius: 22px;
+  border: 1px solid #f0e5dc;
+  box-shadow: 0 12px 24px #34304712;
+  overflow: hidden;
+}
+ion-datetime::part(datetime-header) { background: white; color: var(--tf-ink); padding: 16px 16px 8px; }
+ion-datetime::part(datetime-title) { color: var(--tf-ink); text-transform: none; letter-spacing: 0; }
+ion-datetime::part(calendar-day) { width: 38px; height: 38px; font-size: .9rem; border-radius: 9px; }
+ion-datetime::part(calendar-day active) { background: var(--tf-gold); color: var(--tf-ink); font-weight: 750; }
+ion-datetime::part(calendar-day today) { color: #a54520; border: 1px solid var(--tf-gold); }
+ion-datetime::part(calendar-day active today) { color: var(--tf-ink); }
+ion-datetime::part(calendar-days-of-week) { color: #9c4b29; font-size: .65rem; }
+ion-datetime::part(month-year-button) { background: #f8f6f3; border-radius: 8px; font-size: .8rem; }
+.titulo-calendario { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .9rem; font-weight: 750; }
+.titulo-calendario ion-icon { background: var(--tf-gold); color: var(--tf-ink); padding: 8px; border-radius: 10px; font-size: 22px; }
+/* size="cover" distribuye las siete columnas en todo el ancho. */
+ion-datetime { display: block; min-width: 0; height: auto; }
+ion-datetime::part(datetime-selected-date) { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+@media (max-width: 380px) {
+  ion-datetime::part(calendar-day) { width: 30px; height: 34px; font-size: .8rem; }
+}
+ion-accordion-group { display: block; margin: 20px 0; }
+ion-accordion { margin: 16px 0; border: 1px solid #efdfd5; border-radius: 20px; overflow: hidden; background: white; box-shadow: 0 8px 28px #34304708; }
+.cabecera-acordeon { --background: var(--tf-peach); --padding-start: 18px; --min-height: 76px; margin: 0; border-radius: 0; }
+ion-accordion[value="perfil"] .cabecera-acordeon { --background: var(--tf-rose); }
+ion-accordion[value="disponibilidad"] .cabecera-acordeon { --background: var(--tf-gold); }
+.cabecera-acordeon ion-label { display: flex; align-items: center; gap: 12px; font-weight: 750; white-space: normal; }
+.cabecera-acordeon ion-label ion-icon { padding: 10px; border-radius: 12px; background: #ffffff99; font-size: 22px; flex-shrink: 0; }
+.contenido-acordeon { padding: 20px; }
+.acciones-registro { padding-bottom: 16px; }
+.acciones-registro p { line-height: 1.6; }
+@media (max-width: 380px) { .contenido-acordeon { padding: 14px; } }
+ion-input[name="nombres"]::part(native) { text-transform: uppercase; }
+ion-input[name="nombres"]::part(native)::placeholder { text-transform: none; }

@@ -1,0 +1,10 @@
+﻿rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /candidatos/{documento} {
+      // Práctica temporal: usar únicamente datos ficticios y cerrar al terminar.
+      allow read, create: if true;
+      allow update, delete: if false;
+    }
+  }
+}

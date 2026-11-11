@@ -1,0 +1,359 @@
+﻿<section aria-label="Registro de candidato">
+  <div class="intro">
+    <span class="eyebrow">TU PRÓXIMO CAPÍTULO</span>
+    <h1>Un perfil, nuevas oportunidades.</h1>
+    <p>Comparte tu experiencia y construye tu hoja de vida.</p>
+  </div>
+  <ion-accordion-group
+    [multiple]="true"
+    [value]="bloquesAbiertos"
+    (ionChange)="cambiarBloques($event)"
+    [disabled]="guardando"
+    ><ion-accordion value="personales"
+      ><ion-item slot="header" class="cabecera-acordeon"
+        ><ion-label
+          ><ion-icon name="person-outline" aria-hidden="true"></ion-icon>Datos
+          personales</ion-label
+        ></ion-item
+      >
+      <div slot="content" class="contenido-acordeon">
+        <p>
+          Registre un candidato. Todos los campos son
+          obligatorios.
+        </p>
+        <form (ngSubmit)="validarDatosPersonales()" novalidate>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="person-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-input
+              name="nombres"
+              label="Nombres y apellidos"
+              labelPlacement="stacked"
+              autocomplete="name"
+              placeholder="Ana Pérez"
+              [(ngModel)]="datosPersonales.nombres"
+              required
+              minlength="3"
+            ></ion-input>
+          </ion-item>
+          <p class="error" *ngIf="errores.nombres" role="alert">
+            {{ errores.nombres }}
+          </p>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="mail-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-input
+              name="correo"
+              label="Correo electrónico"
+              labelPlacement="stacked"
+              type="email"
+              autocomplete="email"
+              placeholder="ana@correo.test"
+              [(ngModel)]="datosPersonales.correo"
+              required
+            ></ion-input>
+          </ion-item>
+          <p class="error" *ngIf="errores.correo" role="alert">
+            {{ errores.correo }}
+          </p>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="call-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-input
+              name="telefono"
+              label="Teléfono"
+              labelPlacement="stacked"
+              type="tel"
+              autocomplete="tel"
+              placeholder="0990000000"
+              [(ngModel)]="datosPersonales.telefono"
+              required
+            ></ion-input>
+          </ion-item>
+          <p class="error" *ngIf="errores.telefono" role="alert">
+            {{ errores.telefono }}
+          </p>
+          <h3>
+            <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon
+            >Fecha de nacimiento
+          </h3>
+          <ion-datetime
+            name="fechaNacimiento"
+            aria-label="Fecha de nacimiento"
+            presentation="date"
+            size="cover"
+            [showDefaultTitle]="true"
+            locale="es-EC"
+            [max]="hoy"
+            [showDefaultButtons]="true"
+            doneText="Confirmar"
+            cancelText="Cancelar"
+            [(ngModel)]="datosPersonales.fechaNacimiento"
+            ><span slot="title" class="titulo-calendario"
+              >Selecciona tu nacimiento
+              <ion-icon
+                name="calendar-outline"
+                aria-hidden="true"
+              ></ion-icon></span
+          ></ion-datetime>
+          <p class="error" *ngIf="errores.fechaNacimiento" role="alert">
+            {{ errores.fechaNacimiento }}
+          </p>
+          <ion-button type="submit" expand="block"
+            >Validar datos personales</ion-button
+          >
+          <p *ngIf="mensaje" role="status">{{ mensaje }}</p>
+        </form>
+      </div></ion-accordion
+    >
+    <ion-accordion value="perfil">
+      <ion-item slot="header" class="cabecera-acordeon">
+        <ion-label
+          ><ion-icon name="briefcase-outline" aria-hidden="true"></ion-icon
+          >Perfil profesional</ion-label
+        ></ion-item
+      >
+      <div slot="content" class="contenido-acordeon">
+        <form (ngSubmit)="validarPerfilProfesional()" novalidate>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="briefcase-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-select
+              name="cargo"
+              label="Cargo al que postula"
+              labelPlacement="stacked"
+              placeholder="Seleccione un cargo"
+              [(ngModel)]="perfilProfesional.cargo"
+            >
+              <ion-select-option *ngFor="let cargo of cargos" [value]="cargo">{{
+                cargo
+              }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p class="error" *ngIf="erroresPerfil.cargo" role="alert">
+            {{ erroresPerfil.cargo }}
+          </p>
+
+          <h3 id="titulo-nivel">
+            <ion-icon name="school-outline" aria-hidden="true"></ion-icon>Nivel
+            académico
+          </h3>
+          <ion-radio-group
+            name="nivelAcademico"
+            aria-labelledby="titulo-nivel"
+            [(ngModel)]="perfilProfesional.nivelAcademico"
+          >
+            <ion-item *ngFor="let nivel of niveles">
+              <ion-radio [value]="nivel" justify="space-between">{{
+                nivel
+              }}</ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <p class="error" *ngIf="erroresPerfil.nivelAcademico" role="alert">
+            {{ erroresPerfil.nivelAcademico }}
+          </p>
+
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="time-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-input
+              name="experienciaAnios"
+              label="Años de experiencia"
+              labelPlacement="stacked"
+              type="number"
+              min="0"
+              max="50"
+              step="1"
+              placeholder="0"
+              [(ngModel)]="perfilProfesional.experienciaAnios"
+            ></ion-input>
+          </ion-item>
+          <p class="error" *ngIf="erroresPerfil.experienciaAnios" role="alert">
+            {{ erroresPerfil.experienciaAnios }}
+          </p>
+
+          <h3 id="titulo-modalidad">
+            <ion-icon name="laptop-outline" aria-hidden="true"></ion-icon
+            >Modalidad de trabajo
+          </h3>
+          <ion-radio-group
+            name="modalidad"
+            aria-labelledby="titulo-modalidad"
+            [(ngModel)]="perfilProfesional.modalidad"
+          >
+            <ion-item *ngFor="let modalidad of modalidades">
+              <ion-radio [value]="modalidad" justify="space-between">{{
+                modalidad
+              }}</ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <p class="error" *ngIf="erroresPerfil.modalidad" role="alert">
+            {{ erroresPerfil.modalidad }}
+          </p>
+
+          <h3>
+            <ion-icon name="code-slash-outline" aria-hidden="true"></ion-icon
+            >Habilidades técnicas
+          </h3>
+          <p>Puede seleccionar varias opciones.</p>
+          <ion-item *ngFor="let habilidad of habilidadesDisponibles">
+            <ion-checkbox
+              justify="space-between"
+              [checked]="perfilProfesional.habilidades.includes(habilidad)"
+              (ionChange)="cambiarHabilidad(habilidad, $event.detail.checked)"
+              >{{ habilidad }}</ion-checkbox
+            >
+          </ion-item>
+          <p class="error" *ngIf="erroresPerfil.habilidades" role="alert">
+            {{ erroresPerfil.habilidades }}
+          </p>
+
+          <ion-button type="submit" expand="block"
+            >Validar perfil profesional</ion-button
+          >
+          <p *ngIf="mensajePerfil" role="status">{{ mensajePerfil }}</p>
+        </form>
+      </div></ion-accordion
+    >
+    <ion-accordion value="disponibilidad"
+      ><ion-item slot="header" class="cabecera-acordeon"
+        ><ion-label
+          ><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon
+          >Disponibilidad y presentación</ion-label
+        ></ion-item
+      >
+      <div slot="content" class="contenido-acordeon">
+        <form (ngSubmit)="guardarCandidato()" novalidate>
+          <h3>
+            <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon
+            >Fecha disponible para iniciar
+          </h3>
+          <ion-datetime
+            name="fechaDisponibilidad"
+            aria-label="Fecha disponible para iniciar"
+            presentation="date"
+            size="cover"
+            [showDefaultTitle]="true"
+            locale="es-EC"
+            [min]="hoy"
+            [showDefaultButtons]="true"
+            doneText="Confirmar"
+            cancelText="Cancelar"
+            [(ngModel)]="datosFinales.fechaDisponibilidad"
+            ><span slot="title" class="titulo-calendario"
+              >¿Cuándo puedes iniciar?
+              <ion-icon
+                name="calendar-outline"
+                aria-hidden="true"
+              ></ion-icon></span
+          ></ion-datetime>
+          <p
+            class="error"
+            *ngIf="erroresFinales.fechaDisponibilidad"
+            role="alert"
+          >
+            {{ erroresFinales.fechaDisponibilidad }}
+          </p>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="cash-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-input
+              name="aspiracionSalarial"
+              label="Aspiración salarial (USD)"
+              labelPlacement="stacked"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="1200"
+              [(ngModel)]="datosFinales.aspiracionSalarial"
+            ></ion-input>
+          </ion-item>
+          <p
+            class="error"
+            *ngIf="erroresFinales.aspiracionSalarial"
+            role="alert"
+          >
+            {{ erroresFinales.aspiracionSalarial }}
+          </p>
+          <ion-item>
+            <ion-icon
+              slot="start"
+              name="document-text-outline"
+              aria-hidden="true"
+            ></ion-icon
+            ><ion-textarea
+              name="resumen"
+              label="Resumen profesional"
+              labelPlacement="stacked"
+              placeholder="Describa su experiencia, habilidades e intereses profesionales."
+              [autoGrow]="true"
+              [rows]="4"
+              minlength="30"
+              [(ngModel)]="datosFinales.resumen"
+            ></ion-textarea>
+          </ion-item>
+          <p>
+            Mínimo 30 caracteres. Escritos:
+            {{ datosFinales.resumen.trim().length }}.
+          </p>
+          <p class="error" *ngIf="erroresFinales.resumen" role="alert">
+            {{ erroresFinales.resumen }}
+          </p>
+          <ion-item>
+            <ion-checkbox
+              name="consentimiento"
+              labelPlacement="end"
+              [(ngModel)]="datosFinales.consentimiento"
+              >Acepto el tratamiento de datos.</ion-checkbox
+            >
+          </ion-item>
+          <p class="error" *ngIf="erroresFinales.consentimiento" role="alert">
+            {{ erroresFinales.consentimiento }}
+          </p>
+        </form>
+      </div></ion-accordion
+    >
+  </ion-accordion-group>
+  <div class="acciones-registro">
+    <ion-button
+      expand="block"
+      [disabled]="guardando"
+      (click)="guardarCandidato()"
+      ><ion-spinner
+        *ngIf="guardando"
+        name="dots"
+        aria-hidden="true"
+      ></ion-spinner
+      >{{ guardando ? "Guardando..." : "Guardar candidato" }}</ion-button
+    >
+    <p *ngIf="mensajeFormulario" role="status">{{ mensajeFormulario }}</p>
+  </div>
+</section>
+
+<ion-toast
+  [isOpen]="toastAbierto"
+  [message]="toastMensaje"
+  [color]="toastColor"
+  [duration]="5000"
+  position="top"
+  [buttons]="botonesToast"
+  (didDismiss)="toastAbierto = false"
+></ion-toast>
